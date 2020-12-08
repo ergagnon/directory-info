@@ -1,12 +1,38 @@
 ﻿using System;
+using System.Reflection;
+using System.Threading.Tasks;
+using DirectoryInfo.Cli.Command;
+using McMaster.Extensions.CommandLineUtils;
+using Microsoft.Extensions.Hosting;
 
 namespace DirectoryInfo.Cli
 {
-    class Program
+    [Command("DirectoryInfo.Cli", Description = "Directory Info Command-line interface.")]
+    [Subcommand(typeof(GetDirectoryInfo))]
+    [VersionOptionFromMember(MemberName = "GetVersion")]
+    [HelpOption]
+    public class Program
     {
-        static void Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            return await Host.CreateDefaultBuilder(args)
+                .RunCommandLineApplicationAsync<Program>(args);
+        }
+
+        private static string GetVersion()
+        {
+            return typeof(Program).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+                .InformationalVersion;
+        }
+
+        private int OnExecute(CommandLineApplication app)
+        {  
+            app.Error.Write(app.Error.NewLine);          
+            app.Error.WriteLine("Invalid command. See help information below.");
+            app.Error.Write(app.Error.NewLine);
+            
+            app.ShowHelp();
+            return ResultCodes.Error;
         }
     }
 }
