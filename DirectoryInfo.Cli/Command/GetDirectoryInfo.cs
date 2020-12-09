@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
+using System.Linq;
 using DirectoryInfo.Api.Domain.DirectoryInfoAggregate;
 using McMaster.Extensions.CommandLineUtils;
 
@@ -45,12 +45,20 @@ namespace DirectoryInfo.Cli.Command
         private void PrintTree(AbstractFileInfo tree, string indent="", bool last=false)
         {
             console.ForegroundColor = ConsoleColor.Blue;
-            console.WriteLine($"{indent}+- {tree.Name} || {tree.Size} bytes || Modified at {tree.UpdatedAt}");
+            var fileInfos = tree.FileInfos();
+
+            var count = string.Empty;
+            if (fileInfos.Any())
+            {
+                count = $" (contains {fileInfos.Count} file(s)/folder(s))";
+            }
+
+            console.WriteLine($"{indent}+- {tree.Name}{count} || {tree.Size} bytes || Modified at {tree.UpdatedAt}");
             indent += last ? "   " : "|  ";
 
-            for (int i = 0; i < tree.FileInfos().Count; i++)
+            for (int i = 0; i < fileInfos.Count; i++)
             {
-                PrintTree(tree.FileInfos()[i], indent, i == tree.FileInfos().Count - 1);
+                PrintTree(fileInfos[i], indent, i == fileInfos.Count - 1);
             }
             console.ForegroundColor = ConsoleColor.White;
         }
