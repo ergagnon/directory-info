@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using DirectoryInfo.Api.Domain.DirectoryInfoAggregate;
+using DirectoryInfo.Api.Infrastructure;
 using DirectoryInfo.Cli.Command;
 using McMaster.Extensions.CommandLineUtils;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace DirectoryInfo.Cli
@@ -16,6 +19,9 @@ namespace DirectoryInfo.Cli
         public static async Task<int> Main(string[] args)
         {
             return await Host.CreateDefaultBuilder(args)
+                .ConfigureServices((context, services) => {
+                    services.AddTransient<IDirectoryService, DirectoryService>();
+                })
                 .RunCommandLineApplicationAsync<Program>(args);
         }
 

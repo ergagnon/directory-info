@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryInfo.Cli", "Direct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryInfo.Cli.Test", "DirectoryInfo.Cli.Test\DirectoryInfo.Cli.Test.csproj", "{FB8DB8CB-F517-4420-B5F0-C9B90ECFD43A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryInfo.Api", "DirectoryInfo.Api\DirectoryInfo.Api.csproj", "{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{FB8DB8CB-F517-4420-B5F0-C9B90ECFD43A}.Release|x64.Build.0 = Release|Any CPU
 		{FB8DB8CB-F517-4420-B5F0-C9B90ECFD43A}.Release|x86.ActiveCfg = Release|Any CPU
 		{FB8DB8CB-F517-4420-B5F0-C9B90ECFD43A}.Release|x86.Build.0 = Release|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Debug|x64.Build.0 = Debug|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Debug|x86.Build.0 = Debug|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Release|x64.Build.0 = Release|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{F4A60FCA-C57A-413B-9606-D020F5F0C4EE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

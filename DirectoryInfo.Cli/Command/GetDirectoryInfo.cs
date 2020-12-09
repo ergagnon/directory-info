@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using DirectoryInfo.Api.Domain.DirectoryInfoAggregate;
 using McMaster.Extensions.CommandLineUtils;
 
 namespace DirectoryInfo.Cli.Command
@@ -11,10 +12,32 @@ namespace DirectoryInfo.Cli.Command
         [Argument(0, "path", "Directory full path")]
         public string Path { get; set; }
 
-        public Task<int> OnExecuteAsync(IConsole console)
+        private readonly IDirectoryService directoryService;
+        private readonly IConsole console;
+
+        public GetDirectoryInfo(IDirectoryService directoryService, IConsole console)
         {
-            console.WriteLine($"Directory info of {Path}");
+            this.directoryService = directoryService;
+            this.console = console;
+        }
+
+        public Task<int> OnExecuteAsync()
+        {
+            console.WriteLine($"Getting Directory info of {Path}");
+            var directoryTree = directoryService.GetInfo(Path);
+            PrintTree(directoryTree);
             return Task.FromResult(ResultCodes.Success);
+        }
+
+        private void PrintTree(AbstractFileInfo tree, string indent="", bool last=false)
+        {
+            console.WriteLine($"{indent}+- {tree.Name} || {tree.Size} bytes || Modified at {tree.UpdatedAt}");
+            indent += last ? "   " : "|  ";
+
+            for (int i = 0; i < tree.FileInfos().Count; i++)
+            {
+                PrintTree(tree.FileInfos()[i], indent, i == tree.FileInfos().Count - 1);
+            }
         }
     }
 }
