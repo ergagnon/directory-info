@@ -31,11 +31,11 @@ namespace DirectoryInfo.Cli
                 .InformationalVersion;
         }
 
-        private int OnExecute(CommandLineApplication app)
-        {  
-            app.Error.Write(app.Error.NewLine);          
-            app.Error.WriteLine("Invalid command. See help information below.");
-            app.Error.Write(app.Error.NewLine);
+        private int OnExecute(CommandLineApplication app, IConsole console)
+        {
+            console.ForegroundColor = ConsoleColor.Red;                   
+            console.Error.WriteLine("Invalid command. See help information below.");
+            console.ForegroundColor = ConsoleColor.White;
             
             app.ShowHelp();
             return ResultCodes.Error;

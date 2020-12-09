@@ -34,29 +34,5 @@ namespace DirectoryInfo.Cli.Test
 
             result.Should().Be(ResultCodes.Success);
         }
-
-        [Theory]
-        [InlineData("d")]
-        [InlineData("directory")]
-        public async void GivenDirectoryCommandWithoutPath_WhenCallMain_ThenReturnErrorCode(string command)
-        {
-            var args = new [] { command };
-
-            var result = await Program.Main(args);
-
-            result.Should().Be(ResultCodes.Error);
-        }
-
-        [Theory]
-        [InlineData("d", "C:/dev")]
-        [InlineData("directory", "C:/")]
-        public async void GivenDirectoryCommandWithPath_WhenCallMain_ThenReturnErrorCode(string command, string path)
-        {
-            var args = new[] { command, path };
-
-            var result = await Program.Main(args);
-
-            result.Should().Be(ResultCodes.Success);
-        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using DirectoryInfo.Api.Domain.DirectoryInfoAggregate;
@@ -21,16 +22,29 @@ namespace DirectoryInfo.Cli.Command
             this.console = console;
         }
 
-        public Task<int> OnExecuteAsync()
+        public int OnExecute()
         {
-            console.WriteLine($"Getting Directory info of {Path}");
-            var directoryTree = directoryService.GetInfo(Path);
-            PrintTree(directoryTree);
-            return Task.FromResult(ResultCodes.Success);
+            var result = ResultCodes.Success;
+            try
+            {
+                console.WriteLine($"Getting Directory info of {Path}");
+                var directoryTree = directoryService.GetInfo(Path);
+                PrintTree(directoryTree);
+            }
+            catch (Exception ex)
+            {
+                console.ForegroundColor = ConsoleColor.Red;
+                console.WriteLine($"Error while getting directory info. Error description: {ex.Message}.");
+                console.ForegroundColor = ConsoleColor.White;
+                result = ResultCodes.Error;
+            }
+            
+            return result;
         }
 
         private void PrintTree(AbstractFileInfo tree, string indent="", bool last=false)
         {
+            console.ForegroundColor = ConsoleColor.Blue;
             console.WriteLine($"{indent}+- {tree.Name} || {tree.Size} bytes || Modified at {tree.UpdatedAt}");
             indent += last ? "   " : "|  ";
 
@@ -38,6 +52,7 @@ namespace DirectoryInfo.Cli.Command
             {
                 PrintTree(tree.FileInfos()[i], indent, i == tree.FileInfos().Count - 1);
             }
+            console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
