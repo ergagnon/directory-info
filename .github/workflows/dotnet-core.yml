@@ -3,6 +3,9 @@ name: .NET Core
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - "README.md"
+      - "Requirements.md"
 
 jobs:
   build:
