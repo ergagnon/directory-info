@@ -16,3 +16,6 @@ Using the techs of your choice, develop an application with the following requir
 ### Contact
 If you have any questions about the test, or you need some help; feel free to contact 
 dev.technical.test@qohash.com
+
+dotnet publish DirectoryInfo.Cli -o ./publish -f netcoreapp3.1 -c Release -r linux-x64 -p:PublishSingleFile=true
+docker build --tag directory-cli .
