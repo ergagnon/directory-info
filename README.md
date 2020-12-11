@@ -61,9 +61,11 @@ cd publish
 
 ## Todo for production ready
 
+* Add more unit tests (like Infrastructure with System.IO.Abstractions).
 * Add Acceptation testing and End-To-End testing.
 * Versionning (semver).
 * Better error handling with descriptive message.
+* Make code more robust.
 * Deployment of binaries on Artifactory or equivalent.
 * Provide a Windows and Mac version.
 * Add pull request pipeline to validate quality before merging with master/main.

@@ -34,7 +34,6 @@ namespace DirectoryInfo.Api.Infrastructure
             {
                 throw new ValidationException(ex.Message);
             }
-            
 
             return result;
         }
