@@ -55,7 +55,7 @@ cd publish
 
 ### Publish
 ```
-dotnet publish DirectoryInfo.UI -o ./publish -f netcoreapp3.0 -c Release -r linux-x64 -p:PublishSingleFile=true
+dotnet publish DirectoryInfo.UI -o ./publish -f netcoreapp3.1 -c Release -r linux-x64 -p:PublishSingleFile=true
 ```
 
 ### Use the UI
