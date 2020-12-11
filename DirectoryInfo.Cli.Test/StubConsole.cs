@@ -25,7 +25,7 @@ namespace DirectoryInfo.Cli.Test
 
         public void ResetColor()
         {
-            
+            CancelKeyPress?.ToString();
         }
     }
 }

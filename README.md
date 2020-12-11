@@ -14,6 +14,18 @@ I used languages and technologies that i'm comfortable with to focus mostly on t
 
 * Command-line interface (Cli) demo with [Docker](https://hub.docker.com/r/dbw4452/directory-info.cli)
 
+## Setup
+
+### .Net core
+[Install .Net core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+
+### Source code
+```
+git clone https://github.com/egagnon77/directory-info.git
+cd directory-info
+dotnet restore
+```
+
 ## How to use the Cli
 
 ### Docker (hassle-free)
@@ -27,25 +39,29 @@ docker pull dbw4452/directory-info.cli
 docker run dbw4452/directory-info.cli
 ```
 
-### Build and Run
-
-[Install .Net core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1)
-
-#### Get the code
-```
-git clone https://github.com/egagnon77/directory-info.git
-```
-
-#### Build
+### Publish
 ```
 dotnet publish DirectoryInfo.Cli -o ./publish -f netcoreapp3.1 -c Release -r linux-x64 -p:PublishSingleFile=true
 ```
 
-#### Use the cli
+### Use the cli
 ```
 cd publish
 ./DirectoryInfo.Cli --help
 ./DirectoryInfo.Cli directory <path>
+```
+
+## How to use the UI
+
+### Publish
+```
+dotnet publish DirectoryInfo.UI -o ./publish -f netcoreapp3.0 -c Release -r linux-x64 -p:PublishSingleFile=true
+```
+
+### Use the UI
+```
+cd publish
+./DirectoryInfo.UI
 ```
 
 ## Development choices
@@ -66,6 +82,8 @@ cd publish
 * Versionning (semver).
 * Better error handling with descriptive message.
 * Make code more robust.
+* Add logging system.
+* Better UI.
 * Deployment of binaries on Artifactory or equivalent.
 * Provide a Windows and Mac version.
 * Add pull request pipeline to validate quality before merging with master/main.
